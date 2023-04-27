@@ -1,0 +1,38 @@
+version: "3.8"
+
+networks:
+  localnetwork:
+    name: localnetwork
+
+services:
+
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ../_databases/postgres:/var/lib/postgresql/data
+      - ./config/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+      - ./config/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./dump/beltrano_oltp_10k_pedidos.backup:/etc/postgresql/beltrano_oltp_10k_pedidos.backup
+      - ./dump/beltrano_dw.backup:/etc/postgresql/beltrano_dw.backup
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    ports:
+      - 5432:5432
+    networks:
+        - localnetwork
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "postgres@dff.com"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
+    ports:
+      - 15432:80
+    depends_on:
+      - postgres
+    networks:
+      - localnetwork

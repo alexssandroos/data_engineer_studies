@@ -1,0 +1,55 @@
+version: "3.8"
+
+volumes:
+  redis:
+    external: false
+
+networks:
+  localnetwork:
+    name: localnetwork
+    driver: bridge
+
+services:
+
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./_databases/postgres:/var/lib/postgresql/data
+      - ./db/config/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+      - ./db/config/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./db/dump/beltrano_oltp_10k_pedidos.backup:/etc/postgresql/beltrano_oltp_10k_pedidos.backup
+      - ./db/dump/beltrano_dw.backup:/etc/postgresql/beltrano_dw.backup
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    ports:
+      - 5432:5432
+    networks:
+      - localnetwork
+    mem_limit: 512M
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@pg.com"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
+    ports:
+      - 15432:80
+    depends_on:
+      - postgres
+    networks:
+      - localnetwork
+    mem_limit: 512M
+
+  jupyter_lab:
+    container_name: jupyter_lab
+    build: ./jupyter
+    ports: 
+      - "8888:8888"
+    environment: 
+      - JUPYTER_ENABLE_LAB=yes
+    volumes: 
+      - ./jupyter/notebooks:/home/jovyan
