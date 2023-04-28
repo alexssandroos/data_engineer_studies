@@ -2,7 +2,9 @@ _databases/
 .ipython/
 .jupyter/
 .local/
+.conda/
 .env
+.bash_history
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
