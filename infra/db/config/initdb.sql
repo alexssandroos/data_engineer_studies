@@ -26,3 +26,9 @@ DO $$ begin raise notice 'Starting Superset init scripts.'; end; $$;
 create DATABASE superset OWNER postgres;
 create user superset with encrypted password 'superset';
 grant all privileges on database superset to superset;
+
+-- airflow database
+DO $$ begin raise notice 'Starting Airflow init scripts.'; end; $$;
+create DATABASE airflow OWNER postgres;
+create user airflow with encrypted password 'airflow';
+grant all privileges on database airflow to airflow;
