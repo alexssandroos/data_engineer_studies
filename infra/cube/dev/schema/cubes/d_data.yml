@@ -1,0 +1,45 @@
+cubes:
+  - name: d_data
+    sql_table: public.d_data
+    data_source: default
+
+    pre_aggregations:
+      # Pre-aggregation definitions go here
+      # Learn more here: https://cube.dev/docs/caching/pre-aggregations/getting-started
+
+    joins: []
+
+    measures:
+      - name: count
+        type: count
+
+    dimensions:
+      - name: data_sk
+        sql: data_sk
+        type: number
+        primary_key: true
+
+      - name: dia_da_semana_desc
+        sql: dia_da_semana_desc
+        type: string
+
+      - name: mes_desc_curta
+        sql: mes_desc_curta
+        type: string
+
+      - name: mes_desc
+        sql: mes_desc
+        type: string
+
+      - name: trimestre
+        sql: trimestre
+        type: string
+
+      - name: dia_da_semana_desc_curta
+        sql: dia_da_semana_desc_curta
+        type: string
+
+      - name: campo_data
+        sql: campo_data
+        type: time
+

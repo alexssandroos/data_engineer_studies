@@ -1,0 +1,44 @@
+cubes:
+  - name: d_cursos
+    sql_table: public.d_cursos
+    data_source: default
+
+    pre_aggregations:
+      # Pre-aggregation definitions go here
+      # Learn more here: https://cube.dev/docs/caching/pre-aggregations/getting-started
+
+    joins: []
+
+    measures:
+      - name: count
+        type: count
+
+      - name: duracao_total
+        sql: duracao_total
+        type: sum
+
+    dimensions:
+      - name: curso_sk
+        sql: curso_sk
+        type: number
+        primary_key: true
+      - name: autor
+        sql: autor
+        type: string
+
+      - name: curso_nome
+        sql: curso_nome
+        type: string
+
+      - name: preco_vaga
+        sql: preco_vaga
+        type: string
+
+      - name: date_to
+        sql: date_to
+        type: time
+
+      - name: date_from
+        sql: date_from
+        type: time
+

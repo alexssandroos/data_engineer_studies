@@ -21,14 +21,17 @@ CREATE DATABASE beltrano_dw OWNER postgres;
 \c beltrano_dw
 \i /etc/postgresql/beltrano_dw.backup
 
--- superset database
-DO $$ begin raise notice 'Starting Superset init scripts.'; end; $$;
-create DATABASE superset OWNER postgres;
-create user superset with encrypted password 'superset';
-grant all privileges on database superset to superset;
 
 -- airflow database
 DO $$ begin raise notice 'Starting Airflow init scripts.'; end; $$;
 create DATABASE airflow OWNER postgres;
 create user airflow with encrypted password 'airflow';
 grant all privileges on database airflow to airflow;
+
+-- cube database
+DO $$ begin raise notice 'Starting Cube init scripts.'; end; $$;
+create DATABASE cubejs OWNER postgres;
+create user cubejs with encrypted password 'cubejs';
+grant all privileges on database cubejs to cubejs;
+
+ALTER TABLE beltrano_dw.f_pedidos ADD COLUMN id SERIAL;

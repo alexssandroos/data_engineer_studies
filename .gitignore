@@ -5,6 +5,8 @@ _databases/
 .conda/
 .env
 .bash_history
+logs/
+.cubestore/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

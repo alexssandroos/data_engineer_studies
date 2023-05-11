@@ -84,7 +84,27 @@ services:
       - localnetwork
     volumes: 
       - ./jupyter/notebooks:/home/jovyan
-
+  
+  cube:
+    container_name: cubejs
+    image: cubejs/cube:v0.33.2
+    ports:
+      - 4000:4000
+      - 35432:35432
+    environment:
+      - CUBEJS_DEV_MODE=true
+      - CUBEJS_DB_HOST=postgres
+      - CUBEJS_DB_PORT=5432
+      - CUBEJS_DB_NAME=beltrano_dw
+      - CUBEJS_DB_USER=postgres
+      - CUBEJS_DB_PASS=postgres
+      - CUBEJS_DB_TYPE=postgres
+      - CUBEJS_API_SECRET=1b101a00c978eb092d4bf97840a9b127
+    volumes:
+      - ./cube/dev:/cube/conf
+    networks:
+      - localnetwork
+      
   # Airflow Services
   airflow-scheduler:
     <<: *common

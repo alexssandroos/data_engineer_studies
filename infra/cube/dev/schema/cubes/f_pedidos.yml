@@ -1,0 +1,53 @@
+cubes:
+  - name: f_pedidos
+    sql_table: public.f_pedidos
+    data_source: default
+
+    pre_aggregations:
+      # Pre-aggregation definitions go here
+      # Learn more here: https://cube.dev/docs/caching/pre-aggregations/getting-started
+
+    joins: 
+      - name: d_clientes
+        relationship: many_to_one
+        sql: "{CUBE}.cliente_sk = {d_clientes.cliente_sk}"
+
+      - name: d_cursos
+        relationship: many_to_one
+        sql: "{CUBE}.curso_sk = {d_cursos.curso_sk}"
+      
+      - name: d_empregados
+        relationship: many_to_one
+        sql: "{CUBE}.empregado_sk = {d_empregados.empregado_sk}"
+      
+      - name: d_data
+        relationship: many_to_one
+        sql: "{CUBE}.data_turma_sk = {d_data.data_sk}"
+
+      - name: d_data
+        relationship: many_to_one
+        sql: "{CUBE}.data_pedido_sk = {d_data.data_sk}"
+
+    measures:
+      - name: Qtd
+        type: count
+
+    dimensions:
+      - name: id
+        sql: id
+        type: number
+        primary_key: true
+
+      - name: desconto
+        sql: desconto
+        type: string
+
+      - name: total_item
+        sql: total_item
+        type: string
+
+      - name: pagamento_tipo
+        sql: pagamento_tipo
+        type: string
+
+

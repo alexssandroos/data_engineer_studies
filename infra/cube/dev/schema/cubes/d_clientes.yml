@@ -1,0 +1,84 @@
+cubes:
+  - name: d_clientes
+    sql_table: public.d_clientes
+    data_source: default
+
+    pre_aggregations:
+      # Pre-aggregation definitions go here
+      # Learn more here: https://cube.dev/docs/caching/pre-aggregations/getting-started
+
+    joins: []
+
+    measures:
+      - name: count
+        type: count
+
+    dimensions:
+      - name: cliente_sk
+        sql: cliente_sk
+        type: number
+        primary_key: true
+      - name: fax
+        sql: fax
+        type: string
+
+      - name: cep
+        sql: cep
+        type: string
+
+      - name: telefone
+        sql: telefone
+        type: string
+
+      - name: cargo
+        sql: cargo
+        type: string
+
+      - name: sexo
+        sql: sexo
+        type: string
+
+      - name: endereco
+        sql: endereco
+        type: string
+
+      - name: cliente_tipo
+        sql: cliente_tipo
+        type: string
+
+      - name: cidade_nome
+        sql: cidade_nome
+        type: string
+
+      - name: contato
+        sql: contato
+        type: string
+
+      - name: estado_nome
+        sql: estado_nome
+        type: string
+
+      - name: cliente
+        sql: cliente
+        type: string
+
+      - name: estado_sigla
+        sql: estado_sigla
+        type: string
+
+      - name: cod_cliente
+        sql: cod_cliente
+        type: string
+
+      - name: celular
+        sql: celular
+        type: string
+
+      - name: date_from
+        sql: date_from
+        type: time
+
+      - name: date_to
+        sql: date_to
+        type: time
+

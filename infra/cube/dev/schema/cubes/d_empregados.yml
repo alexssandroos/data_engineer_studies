@@ -1,0 +1,60 @@
+cubes:
+  - name: d_empregados
+    sql_table: public.d_empregados
+    data_source: default
+
+    pre_aggregations:
+      # Pre-aggregation definitions go here
+      # Learn more here: https://cube.dev/docs/caching/pre-aggregations/getting-started
+
+    joins: []
+
+    measures:
+      - name: count
+        type: count
+
+    dimensions:
+      - name: empregado_sk
+        sql: empregado_sk
+        type: number
+        primary_key: true
+      - name: empregado
+        sql: empregado
+        type: string
+
+      - name: departamento
+        sql: departamento
+        type: string
+
+      - name: cpf
+        sql: cpf
+        type: string
+
+      - name: ramal
+        sql: ramal
+        type: string
+
+      - name: cargo
+        sql: cargo
+        type: string
+
+      - name: data_nasc
+        sql: data_nasc
+        type: time
+
+      - name: data_contratacao
+        sql: data_contratacao
+        type: time
+
+      - name: date_from
+        sql: date_from
+        type: time
+
+      - name: date_to
+        sql: date_to
+        type: time
+
+      - name: data_demissao
+        sql: data_demissao
+        type: time
+
