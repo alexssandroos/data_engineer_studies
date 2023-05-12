@@ -32,16 +32,17 @@ with DAG('hop-pipeline', default_args=default_args, schedule_interval=None, catc
         environment= {
             'HOP_RUN_PARAMETERS': 'INPUT_DIR=',
             'HOP_LOG_LEVEL': 'Basic',
-            'HOP_FILE_PATH': '//project/dim/dim_calendar.hpl',
-            'HOP_PROJECT_DIRECTORY': '//project',
+            'HOP_FILE_PATH': '${PROJECT_HOME}/dim/dim_calendar.hpl',
+            'HOP_PROJECT_DIRECTORY': '/project',
             'HOP_PROJECT_NAME': 'beltrano',
-            'HOP_ENVIRONMENT_NAME': 'beltrano-config.json',
-            'HOP_ENVIRONMENT_CONFIG_FILE_NAME_PATHS': '/project/beltrano-config.json',
+            'HOP_PROJECT_CONFIG_FILE_NAME':'beltrano-config.json',
+            'HOP_ENVIRONMENT_NAME': 'dev',
+            'HOP_ENVIRONMENT_CONFIG_FILE_NAME_PATHS': '/project-config/env-dev.json',
             'HOP_RUN_CONFIG': 'local'
         },
         docker_url="unix://var/run/docker.sock",
         network_mode="bridge",
-        mounts=[Mount(source='/c/home/alexssandro_oliveira/projects/data_engineer_studies/infra/hop/beltrano', target='//project', type='bind'), Mount(source='/c/home/alexssandro_oliveira/projects/data_engineer_studies/infra/hop/beltrano/config', target='//project-config', type='bind')],
+        mounts=[Mount(source='/home/alexssandro_oliveira/projects/data_engineer_studies/infra/hop/projects/beltrano', target='/project', type='bind'), Mount(source='/home/alexssandro_oliveira/projects/data_engineer_studies/infra/hop/projects/beltrano/config', target='/project-config', type='bind')],
         force_pull=False
         )
     
