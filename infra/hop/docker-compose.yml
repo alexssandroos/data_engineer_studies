@@ -7,6 +7,8 @@ networks:
 services:
   hop-web:
     image: apache/hop-web:latest
+    user: "${HOP_UID}:0"
+    env_file: .env
     container_name: hop-web
     ports: 
       - 18080:8080
