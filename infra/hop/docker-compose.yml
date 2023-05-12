@@ -1,0 +1,21 @@
+version: "3.8"
+
+networks:
+  localnetwork:
+    name: localnetwork
+
+services:
+  hop-web:
+    image: apache/hop-web:latest
+    container_name: hop-web
+    ports: 
+      - 18080:8080
+    environment: 
+      - HOP_PROJECT_FOLDER=/project 
+      - HOP_PROJECT_NAME=beltrano 
+      - HOP_PROJECT_CONFIG_FILE_NAME=beltrano-config.json
+      - HOP_ENVIRONMENT_NAME=dev 
+      - HOP_ENVIRONMENT_CONFIG_FILE_NAME_PATHS=/config/env-dev.json 
+    volumes: 
+      - ./projects/beltrano:/project
+      - ./projects/beltrano/config:/config

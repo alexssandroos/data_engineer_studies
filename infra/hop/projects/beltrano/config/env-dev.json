@@ -1,0 +1,10 @@
+{
+    "variables" : [
+    {"name" : "VAR_TEST",
+      "value" : "My test value for the dev environment",
+      "description" : ""},
+      {"name" : "DW_HOSTNAME",
+      "value" : "host.docker.internal",
+      "description" : ""}
+     ]
+}  
