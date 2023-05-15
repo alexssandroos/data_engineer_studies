@@ -8,6 +8,7 @@ _databases/
 logs/
 .cubestore/
 portainer_data/
+dbt-env/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
