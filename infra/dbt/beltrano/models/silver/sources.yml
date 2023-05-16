@@ -1,0 +1,75 @@
+version: 2
+
+sources:
+  - name: stage
+    description: tables from beltrano oltp, load with airbyte
+    tables:
+      - name: beltrano_clientes_pf
+        columns:
+          - name: cliente_id
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
+      - name: beltrano_clientes_pj
+        columns:
+          - name: cliente_id
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
+      - name: pedidos
+        columns:
+          - name: pedido_id
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
+      - name: pedidos_detalhes
+        columns:
+          - name: pedido_id
+            description: Primary key of the table
+            tests:
+              - not_null
+      - name: cursos
+        columns:
+          - name: curso_id
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
+      - name: empregados
+        columns:
+          - name: empregado_id
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
+      - name: estados
+        columns:
+          - name: estado_id
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
+      - name: cidades
+        columns:
+          - name: cidade_id
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
+      - name: turmas
+        columns:
+          - name: turma_id
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
+      - name: dim_calendar
+        columns:
+          - name: data_dsc
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
