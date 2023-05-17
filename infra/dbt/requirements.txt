@@ -1,0 +1,2 @@
+astronomer-cosmos[dbt-postgres]
+dbt-postgres==1.5.0

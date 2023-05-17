@@ -1,4 +1,4 @@
-beltrano_oltp_content:
+beltrano_dw:
   target: dev
   outputs:
     dev:
