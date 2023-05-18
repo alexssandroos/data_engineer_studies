@@ -5,10 +5,10 @@ services:
     image: metabase/metabase
     restart: always
     ports:
-      - 3002:3000
+      - 13000:3000
     volumes:
       # declare your mount volume /host/dir:/container/dir
-      - ./data/metabase:/metabase-data
+      #- ./data/metabase:/metabase-data
       - ./plugins:/plugins
     environment:
       MB_DB_TYPE: postgres
@@ -17,3 +17,8 @@ services:
       MB_DB_USER: metabase
       MB_DB_PASS: metabase
       MB_DB_HOST: host.docker.internal
+    healthcheck:
+      test: curl --fail -I http://localhost:3000/api/health || exit 1
+      interval: 15s
+      timeout: 5s
+      retries: 5

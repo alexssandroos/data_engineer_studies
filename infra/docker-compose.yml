@@ -23,9 +23,9 @@ x-depends-on:
     airflow-init:
       condition: service_completed_successfully
 
-volumes:
-  redis:
-    external: false
+#volumes:
+#  redis:
+#    external: false
 
 
 networks:
@@ -85,6 +85,32 @@ services:
     volumes: 
       - ./jupyter/notebooks:/home/jovyan
   
+  metabase-app:
+    image: metabase/metabase
+    restart: always
+    ports:
+      - 13000:3000
+    volumes:
+      # declare your mount volume /host/dir:/container/dir
+      #- ./data/metabase:/metabase-data
+      - ./plugins:/plugins
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: metabase
+      MB_DB_PORT: 5432
+      MB_DB_USER: metabase
+      MB_DB_PASS: metabase
+      MB_DB_HOST: postgres # or host.docker.internal
+    healthcheck:
+      test: curl --fail -I http://localhost:3000/api/health || exit 1
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    depends_on:
+      - postgres
+    networks:
+      - localnetwork
+      
   cube:
     container_name: cubejs
     image: cubejs/cube:v0.33.2
