@@ -1,3 +1,3 @@
 FROM apache/airflow:2.6.0
 ADD requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt
