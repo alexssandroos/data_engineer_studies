@@ -33,6 +33,8 @@ DO $$ begin raise notice 'Starting Cube init scripts.'; end; $$;
 create DATABASE cubejs OWNER postgres;
 create user cubejs with encrypted password 'cubejs';
 grant all privileges on database cubejs to cubejs;
+-- cube tables require id 
+ALTER TABLE beltrano_dw.f_pedidos ADD COLUMN id SERIAL;
 
 -- metabase database
 DO $$ begin raise notice 'Starting Metabase init scripts.'; end; $$;
@@ -40,4 +42,8 @@ create DATABASE metabase OWNER postgres;
 create user metabase with encrypted password 'metabase';
 grant all privileges on database metabase to metabase;
 
-ALTER TABLE beltrano_dw.f_pedidos ADD COLUMN id SERIAL;
+-- metabase database
+DO $$ begin raise notice 'Starting Airbyte init scripts.'; end; $$;
+create DATABASE airbytedb OWNER postgres;
+create user airbyte with encrypted password 'airbyte';
+grant all privileges on database airbytedb to airbyte;

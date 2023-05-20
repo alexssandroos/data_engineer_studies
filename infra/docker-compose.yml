@@ -27,7 +27,6 @@ x-depends-on:
 #  redis:
 #    external: false
 
-
 networks:
   localnetwork:
     name: localnetwork
@@ -69,7 +68,7 @@ services:
       - postgres
     networks:
       - localnetwork
-    mem_limit: 512M
+    mem_limit: 1024M
 
   jupyter_lab:
     container_name: jupyter_lab
@@ -93,7 +92,7 @@ services:
     volumes:
       # declare your mount volume /host/dir:/container/dir
       #- ./data/metabase:/metabase-data
-      - ./plugins:/plugins
+      - ./metabase/plugins:/plugins
     environment:
       MB_DB_TYPE: postgres
       MB_DB_DBNAME: metabase

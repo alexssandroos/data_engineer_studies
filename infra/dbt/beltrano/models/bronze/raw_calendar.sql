@@ -1,3 +1,5 @@
+{{  config( pre_hook="SET lc_time  = 'en_US.utf8'") }}
+
 with 
     month_names as (
         select 
@@ -28,11 +30,14 @@ with
     ),
     final as (
         SELECT
-            DATE_KEY
+            extract(epoch from date_key) as epoch 
+            , date_key
             ,date_part('month', date_key) as month_number
             ,date_part('year', date_key) as year_number
             ,date_part('day', date_key) as day_number
             ,date_part('dow', date_key)+1  as dow 
+            ,date_part('doy', date_key)+1  as doy 
+            ,extract(week from date_key) as week_number
             ,month_names.month_name 
             ,month_names.month_name_short
             ,week_names.week_name
