@@ -10,6 +10,10 @@ CREATE TABLE test (
 INSERT INTO test (timestamp_field, name) values (NOW(), 'Test1');
 INSERT INTO test (timestamp_field, name) values (NOW(), 'Test2');
 INSERT INTO test (timestamp_field, name) values (NOW(), 'Test3');
+DO $$ begin raise notice 'End General Tests scripts.'; end; $$;
+drop database if exists general_test ;
+
+
 
 -- Beltrano Restore
 DO $$ begin raise notice 'Starting Beltrano restore scripts.'; end; $$;
@@ -42,8 +46,9 @@ create DATABASE metabase OWNER postgres;
 create user metabase with encrypted password 'metabase';
 grant all privileges on database metabase to metabase;
 
--- metabase database
+--airbyte database
 DO $$ begin raise notice 'Starting Airbyte init scripts.'; end; $$;
 create DATABASE airbytedb OWNER postgres;
 create user airbyte with encrypted password 'airbyte';
 grant all privileges on database airbytedb to airbyte;
+ALTER USER airbyte SUPERUSER;
