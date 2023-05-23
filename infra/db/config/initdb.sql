@@ -24,6 +24,7 @@ CREATE DATABASE beltrano_dw OWNER postgres;
 
 \c beltrano_dw
 \i /etc/postgresql/beltrano_dw.backup
+create schema if not exists stage ;
 
 
 -- airflow database
