@@ -52,4 +52,4 @@ DO $$ begin raise notice 'Starting Airbyte init scripts.'; end; $$;
 create DATABASE airbytedb OWNER postgres;
 create user airbyte with encrypted password 'airbyte';
 grant all privileges on database airbytedb to airbyte;
-ALTER USER airbyte SUPERUSER;
+ALTER USER airbyte CREATEDB;

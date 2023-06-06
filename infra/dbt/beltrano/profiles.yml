@@ -6,7 +6,7 @@ beltrano_dw:
       host: host.docker.internal
       user: postgres
       password: postgres
-      port: 5432
+      port: 15432
       dbname: beltrano_dw
       schema: stage
       threads: 1
