@@ -10,3 +10,15 @@ beltrano_dw:
       dbname: beltrano_dw
       schema: stage
       threads: 1
+
+elementary:
+  outputs:
+    default:
+      type: "postgres"
+      host: "host.docker.internal"
+      port: 15432
+      user: "postgres"
+      password: "postgres"
+      dbname: "beltrano_dw"
+      schema: "stage_elementary"
+      threads: 1
