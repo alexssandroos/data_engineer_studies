@@ -1,0 +1,35 @@
+version: "3.8"
+
+#admin@email.com
+#admin@123
+networks:
+  labnetwork:
+    name: labnetwork
+
+services:
+
+  metabase-app:
+    container_name: metaduck
+    build: .
+    restart: always
+    ports:
+      - 13000:3000
+    volumes:
+      - ./plugins:/home/plugins
+      - ./external_data:/home/external_data
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: metabase
+      MB_DB_PORT: 5432
+      MB_DB_USER: metabase
+      MB_DB_PASS: metabase
+      MB_DB_HOST: host.docker.internal
+      MB_PLUGINS_DIR: /home/plugins
+    command: "java -jar /home/metabase.jar"
+    healthcheck:
+      test: curl --fail -I http://localhost:3000/api/health || exit 1
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    networks:
+      - labnetwork

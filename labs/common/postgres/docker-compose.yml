@@ -1,0 +1,41 @@
+version: "3.8"
+
+networks:
+  labnetwork:
+    name: labnetwork
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ../../_data/postgres:/var/lib/postgresql/data
+      - ./config/pg/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+      - ./config/pg/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./dump/beltrano_oltp_10k_pedidos.backup:/etc/postgresql/beltrano_oltp_10k_pedidos.backup
+      - ./dump/beltrano_dw.backup:/etc/postgresql/beltrano_dw.backup
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    ports:
+      - 5432:5432
+    networks:
+        - labnetwork
+  #https://stackoverflow.com/questions/64620446/adding-postgress-connections-to-pgadmin-in-docker-file  
+  #https://www.pgadmin.org/docs/pgadmin4/latest/container_deployment.html
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@email.com"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
+    volumes:
+      - ./config/pgadmin/servers.json:/pgadmin4/servers.json
+      - ./config/pgadmin/pgpass:/pgpass
+    ports:
+      - 15432:80
+    depends_on:
+      - postgres
+    networks:
+      - labnetwork

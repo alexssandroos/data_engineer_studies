@@ -1,0 +1,26 @@
+version: "3.8"
+
+networks:
+  labnetwork:
+    name: labnetwork
+
+services:
+  jupyter_lab:
+    container_name: jupyter_lab
+    build: .
+    user: root  
+    working_dir: /home/lab_user
+    ports: 
+      - "8888:8888"
+    environment: 
+      - JUPYTER_ENABLE_LAB=yes
+      - NB_USER=lab_user
+      - NB_UID=1234
+      - NB_GID=1234
+      - CHOWN_HOME=yes
+      #- CHOWN_HOME_OPTS='-R'
+    volumes: 
+      - ../../_data/notebooks:/home/lab_user
+    command: "start-notebook.sh --NotebookApp.token='' --NotebookApp.password=''"
+    networks:
+      - labnetwork

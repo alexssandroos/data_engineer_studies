@@ -1,0 +1,25 @@
+version: "3.8"
+#https://tabular.io/blog/docker-spark-and-iceberg/
+#https://www.sefidian.com/2022/04/08/deploy-standalone-minio-using-docker-compose/
+
+networks:
+  labnetwork:
+    name: labnetwork
+
+services:
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - ../../_data/minio_data:/data
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: admin@123456
+      MINIO_DOMAIN: minio
+    command: server --console-address ":9001" /data
+    networks:
+     labnetwork:
+        aliases:
+          - warehouse.minio

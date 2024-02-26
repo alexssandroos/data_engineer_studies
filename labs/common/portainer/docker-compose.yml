@@ -1,0 +1,23 @@
+version: "3.8"
+
+# https://docs.portainer.io/start/install-ce/server/docker/wsl
+# docker volume create portainer_data
+# docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+
+#default user admin, admin@123456
+
+networks:
+  labnetwork:
+    name: labnetwork
+
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    ports: 
+      - 18091:8000
+      - 9443:9443
+    volumes: 
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ../../_data/portainer_data:/data
+    restart: always
