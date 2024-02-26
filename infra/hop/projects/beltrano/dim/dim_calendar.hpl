@@ -202,6 +202,76 @@
     </GUI>
   </transform>
   <transform>
+    <name>Table output</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <commit>1000</commit>
+    <connection>beltrano_dw</connection>
+    <fields>
+      <field>
+        <column_name>ano</column_name>
+        <stream_name>ano</stream_name>
+      </field>
+      <field>
+        <column_name>mes_num</column_name>
+        <stream_name>mes_num</stream_name>
+      </field>
+      <field>
+        <column_name>dia</column_name>
+        <stream_name>dia</stream_name>
+      </field>
+      <field>
+        <column_name>dia_semana</column_name>
+        <stream_name>dia_semana</stream_name>
+      </field>
+      <field>
+        <column_name>trimestre_num</column_name>
+        <stream_name>trimestre_num</stream_name>
+      </field>
+      <field>
+        <column_name>dia_no_ano</column_name>
+        <stream_name>dia_no_ano</stream_name>
+      </field>
+      <field>
+        <column_name>dia_semana_dsc</column_name>
+        <stream_name>dia_semana_dsc</stream_name>
+      </field>
+      <field>
+        <column_name>dia_semana_dsc_min</column_name>
+        <stream_name>dia_semana_dsc_min</stream_name>
+      </field>
+      <field>
+        <column_name>data_dsc</column_name>
+        <stream_name>data</stream_name>
+      </field>
+    </fields>
+    <ignore_errors>N</ignore_errors>
+    <only_when_have_rows>N</only_when_have_rows>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <return_keys>N</return_keys>
+    <schema>stage</schema>
+    <specify_fields>Y</specify_fields>
+    <table>dim_calendar</table>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_in_table>Y</tablename_in_table>
+    <truncate>Y</truncate>
+    <use_batch>Y</use_batch>
+    <attributes/>
+    <GUI>
+      <xloc>1904</xloc>
+      <yloc>272</yloc>
+    </GUI>
+  </transform>
+  <transform>
     <name>create fields from date</name>
     <type>Calculator</type>
     <description/>
@@ -281,79 +351,6 @@
     <GUI>
       <xloc>1280</xloc>
       <yloc>272</yloc>
-    </GUI>
-  </transform>
-  <transform>
-    <name>Table output</name>
-    <type>TableOutput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <commit>1000</commit>
-    <connection>beltrano_dw</connection>
-    <fields>
-      <field>
-        <column_name>ano</column_name>
-        <stream_name>ano</stream_name>
-      </field>
-      <field>
-        <column_name>mes_num</column_name>
-        <stream_name>mes_num</stream_name>
-      </field>
-      <field>
-        <column_name>dia</column_name>
-        <stream_name>dia</stream_name>
-      </field>
-      <field>
-        <column_name>dia_semana</column_name>
-        <stream_name>dia_semana</stream_name>
-      </field>
-      <field>
-        <column_name>trimestre_num</column_name>
-        <stream_name>trimestre_num</stream_name>
-      </field>
-      <field>
-        <column_name>dia_no_ano</column_name>
-        <stream_name>dia_no_ano</stream_name>
-      </field>
-      <field>
-        <column_name>dia_semana_dsc</column_name>
-        <stream_name>dia_semana_dsc</stream_name>
-      </field>
-      <field>
-        <column_name>dia_semana_dsc_min</column_name>
-        <stream_name>dia_semana_dsc_min</stream_name>
-      </field>
-      <field>
-        <column_name>data_dsc</column_name>
-        <stream_name>data</stream_name>
-      </field>
-    </fields>
-    <ignore_errors>N</ignore_errors>
-    <only_when_have_rows>N</only_when_have_rows>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <return_field/>
-    <return_keys>N</return_keys>
-    <schema>stage</schema>
-    <specify_fields>Y</specify_fields>
-    <table>dim_calendar</table>
-    <tablename_field/>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_in_table>Y</tablename_in_table>
-    <truncate>Y</truncate>
-    <use_batch>Y</use_batch>
-    <attributes/>
-    <GUI>
-      <xloc>2032</xloc>
-      <yloc>256</yloc>
     </GUI>
   </transform>
   <transform_error_handling>

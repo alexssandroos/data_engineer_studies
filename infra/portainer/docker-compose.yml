@@ -12,7 +12,7 @@ services:
     image: portainer/portainer-ce:latest
     container_name: portainer
     ports: 
-      - 18081:8000
+      - 18091:8000
       - 9443:9443
     volumes: 
       - /var/run/docker.sock:/var/run/docker.sock

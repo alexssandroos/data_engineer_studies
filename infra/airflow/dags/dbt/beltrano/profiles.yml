@@ -1,0 +1,12 @@
+beltrano_dw:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: host.docker.internal
+      user: postgres
+      password: postgres
+      port: 15432
+      dbname: beltrano_dw
+      schema: stage
+      threads: 1

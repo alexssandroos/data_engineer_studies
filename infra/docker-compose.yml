@@ -98,8 +98,7 @@ services:
            
   # Airflow Services
   airflow-scheduler:
-    <<: *common
-    <<: *depends-on
+    <<: [*common, *depends-on ]
     container_name: airflow-scheduler
     command: scheduler
     restart: on-failure
@@ -107,8 +106,7 @@ services:
       - "18793:8793"
 
   airflow-webserver:
-    <<: *common
-    <<: *depends-on
+    <<: [*common, *depends-on ]
     container_name: airflow-webserver
     restart: always
     command: webserver
