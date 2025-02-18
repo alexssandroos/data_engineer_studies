@@ -28,8 +28,10 @@ services:
     image: dpage/pgadmin4:latest
     container_name: pgadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: "admin@email.com"
+      PGADMIN_DEFAULT_EMAIL: "pg@admin.com"
       PGADMIN_DEFAULT_PASSWORD: "postgres"
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
     volumes:
       - ./config/pgadmin/servers.json:/pgadmin4/servers.json
       - ./config/pgadmin/pgpass:/pgpass
