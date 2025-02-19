@@ -1,0 +1,24 @@
+# https://github.com/duckdb/dbt-duckdb
+# https://docs.getdbt.com/docs/core/connect-data-platform/duckdb-setup
+# https://duckdb.org/docs/configuration/overview.html
+# https://duckdb.org/docs/extensions/overview
+beltrano:
+  outputs:
+    dev:
+      type: duckdb
+      path: /tmp/dev.duckdb
+      extensions:
+        - httpfs
+        - parquet
+      settings:
+        s3_region: us-east-1
+        s3_access_key_id: "{{ env_var('S3_ACCESS_KEY_ID') }}"
+        s3_secret_access_key: "{{ env_var('S3_SECRET_ACCESS_KEY') }}"
+      threads: 1
+
+    prod:
+      type: duckdb
+      path: prod.duckdb
+      threads: 4
+
+  target: dev

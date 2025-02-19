@@ -3,6 +3,8 @@ version: "3.8"
 networks:
   labnetwork:
     name: labnetwork
+  kind:
+    name: kind
 
 services:
   postgres:
@@ -22,6 +24,7 @@ services:
       - 5432:5432
     networks:
         - labnetwork
+        - kind
   #https://stackoverflow.com/questions/64620446/adding-postgress-connections-to-pgadmin-in-docker-file  
   #https://www.pgadmin.org/docs/pgadmin4/latest/container_deployment.html
   pgadmin:

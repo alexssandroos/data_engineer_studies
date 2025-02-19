@@ -1,10 +1,12 @@
 version: "3.8"
 #https://tabular.io/blog/docker-spark-and-iceberg/
 #https://www.sefidian.com/2022/04/08/deploy-standalone-minio-using-docker-compose/
-
+#https://medium.com/@jdegbun/airbyte-etl-postgres-to-s3-minio-ab788182e1fc
 networks:
   labnetwork:
     name: labnetwork
+  kind:
+    name: kind  
 
 services:
   minio:
@@ -16,10 +18,12 @@ services:
       - ../../_data/minio_data:/data
     environment:
       MINIO_ROOT_USER: admin
-      MINIO_ROOT_PASSWORD: admin@123456
-      MINIO_DOMAIN: minio
+      MINIO_ROOT_PASSWORD: admin@minio
     command: server --console-address ":9001" /data
     networks:
      labnetwork:
+        aliases:
+          - warehouse.minio
+     kind:
         aliases:
           - warehouse.minio

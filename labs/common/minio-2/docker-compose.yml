@@ -1,0 +1,28 @@
+version: '3.8'
+
+networks:
+  labnetwork:
+    name: labnetwork
+  kind:
+    name: kind  
+
+services:
+  minio:
+    image: 'quay.io/minio/minio:latest'
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - ../../_data/minio_data:/data
+    environment:
+      - "MINIO_ROOT_USER=admin"
+      - "MINIO_ROOT_PASSWORD=admin@minio"
+    command: server --console-address ":9001" /data
+    networks:
+     labnetwork:
+        aliases:
+          - warehouse.minio
+     kind:
+        aliases:
+          - warehouse.minio
