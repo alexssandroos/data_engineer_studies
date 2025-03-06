@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: restore-sql-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: local-path
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    # Ajuste conforme seu ambiente (Windows/WSL):
+    #Lembrando que seus arquivos .backup tem que ta nesse diretório
+    path: "/home/alexssandro_oliveira/projects/data_engineer_studies/labs/common/postgres/dump"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: restore-sql-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: local-path
+  volumeName: restore-sql-pv
