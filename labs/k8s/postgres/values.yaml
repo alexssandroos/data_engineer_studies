@@ -1,0 +1,43 @@
+global:
+  postgresql:
+    auth:
+      username: postgres
+      password: postgres
+      database: postgres
+
+primary:
+  extraVolumes:
+    - name: restore-sql
+      persistentVolumeClaim:
+        claimName: restore-sql-pvc
+  extraVolumeMounts:
+    - name: restore-sql
+      mountPath: /restore
+      readOnly: false
+  volumePermissions:
+    enabled: true
+
+persistence:
+  enabled: true
+  storageClass: local-path
+  size: 5Gi
+
+
+initdbScripts:
+  restore_script.sh: |-
+    #!/bin/bash
+    set -e
+
+    export PGPASSWORD="${POSTGRES_PASSWORD}"
+
+    echo "== Criando databases beltrano_oltp e beltrano_dw=="
+    psql -U "${POSTGRES_USER}" -d postgres -c "CREATE DATABASE beltrano_oltp;"
+    psql -U "${POSTGRES_USER}" -d postgres -c "CREATE DATABASE beltrano_dw;"
+
+    echo "== Restaurando beltrano_oltp_10k_pedidos.backup =="
+    psql -U "${POSTGRES_USER}" -d beltrano_oltp -f /restore/beltrano_oltp_10k_pedidos.backup
+
+    echo "== Restaurando beltrano_dw.backup =="
+    psql -U "${POSTGRES_USER}" -d beltrano_dw -f /restore/beltrano_dw.backup
+
+    echo "== Concluído com sucesso =="
