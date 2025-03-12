@@ -1,0 +1,13 @@
+aux_number,month_name,month_name_short,week_name,week_name_short
+1,Janeiro,JAN,Domingo,DOM
+2,Fevereiro,FEV,Segunda-Feira,SEG
+3,Marco,MAR,Terça-Feira,TER
+4,Abril,ABR,Quarta-Feira,QUA
+5,Maio,MAI,Quinta-Feira,QUI
+6,Junho,JUN,Sexta-Feira,SEX
+7,Julho,JUL,Sabado,SAB
+8,Agosto,AGO,,
+9,Setembro,SET,,
+10,Outubro,OUT,,
+11,Novembro,NOV,,
+12,Dezembro,DEZ,,

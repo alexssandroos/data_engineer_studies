@@ -1,0 +1,12 @@
+olist_analytics:
+  outputs:
+    dev:
+      type: postgres
+      dbname: olist_analytics
+      schema: public
+      user: postgres
+      pass: postgres
+      host: localhost
+      port: 5432
+      threads: 1
+  target: dev
