@@ -3,7 +3,7 @@ olist_analytics:
     dev:
       type: postgres
       dbname: olist_analytics
-      schema: public
+      schema: mdw
       user: postgres
       pass: postgres
       host: localhost

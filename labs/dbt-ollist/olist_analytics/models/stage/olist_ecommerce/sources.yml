@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+
+  - name: ecomerce
+    description: "Olist e-commerce content"
+    schema: mdw_raw
+    loader : postgres
+
+    tables:
+      - name: olist_customers
+        description: "Tabela com dados de clientes"
+        columns:
+          - name: customer_id
+            description: "Chave extrangeira do cliente"
+            data_tests:
+              - not_null

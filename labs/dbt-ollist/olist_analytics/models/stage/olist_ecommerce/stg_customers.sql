@@ -1,0 +1,20 @@
+
+{{ config(
+    unique_key='customer_id',
+    enabled=true,
+    tags=["stage"],
+) }}
+
+with source as (
+    select
+    *
+    from {{ source('ecomerce','olist_customers') }}
+)
+
+select
+    customer_id, 
+    customer_unique_id, 
+    customer_zip_code_prefix, 
+    customer_city, 
+    customer_state
+from source
