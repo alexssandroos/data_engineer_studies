@@ -32,8 +32,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   olist_analytics:
     # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
     #each system has a folder on stage. ex.: stage/olist, stage/system2 etc
     stage:
       schema: stage

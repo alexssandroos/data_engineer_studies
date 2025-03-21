@@ -4,7 +4,7 @@ sources:
 
   - name: ecomerce
     description: "Olist e-commerce content"
-    schema: mdw_raw
+    schema: raw
     loader : postgres
 
     tables:
